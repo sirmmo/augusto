@@ -1,0 +1,4 @@
+*.pyc
+*.pyo
+
+*whoosh_index*
