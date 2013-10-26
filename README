@@ -1,0 +1,5 @@
+to dl the files:
+
+ wget -i augusto_raw.csv
+
+then the indexing and managing starts!

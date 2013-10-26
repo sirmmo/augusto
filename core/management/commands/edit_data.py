@@ -15,14 +15,4 @@ class Command(BaseCommand):
         for f in files:
 			print num, f
 			num += 1
-			name = f.split('/')[-1].split('.')[0]
-			part = " ".join(name.split('_')[1:])
-			name = name.split('_')[0]
-			year = name[0:4]
-			nyear = int(year)
-			number = name[4:]
-			int_list = [int(s) for s in re.findall('\\d+', number)]
-			nnumber = int_list[0]
-			i = IssueDetails.objects.create(filename=f, year=year, nyear = nyear, number=number, nnumber = nnumber, mode=part)
-			print i
-
+			

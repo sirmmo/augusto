@@ -26,5 +26,16 @@ def scrap_pdf(path):
 
 @task
 def store_issue(filename):
-	Issue.objects.create(filename=filename, text=scrap_pdf(filename))
+    ji = Issue.objects.create(filename=filename, text=scrap_pdf(filename))
+    name = filename.split('/')[-1].split('.')[0]
+    part = " ".join(name.split('_')[1:])
+    name = name.split('_')[0]
+    year = name[0:4]
+    nyear = int(year)
+    number = name[4:]
+    int_list = [int(s) for s in re.findall('\\d+', number)]
+    nnumber = int_list[0]
+    i = IssueDetails.objects.create(issue = ji, filename=f, year=year, nyear = nyear, number=number, nnumber = nnumber, mode=part)
+    print ji.id, i.id
+
 	

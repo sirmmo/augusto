@@ -17,7 +17,8 @@ modes = {
 def index(request):
 	query = request.REQUEST.get('q')
 	if query is not None:
-		the_list = list(Issue.objects.filter(text__contains = query).values('filename', 'year', 'number', 'mode'))
+		the_list = Issue.objects.filter(text__contains = query).values_list('filename', flat=True)
+		the_list = list(IssueDetails.objects.filter(filename__in=the_list).values('filename', 'year', 'mode', 'number'))
 		for el in the_list:
 			el['mode'] = modes.get(el['mode'], el['mode'])
 			el['filename'] = el['filename'].split('/')[-1].split('.')[0]

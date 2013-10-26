@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>Augusto Search</title>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+		<style>
+		body{
+			font-family: 'Open Sans', sans-serif;
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Augusto Search</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<form class="navbar-form navbar-left" role="search" method="GET" >
+						<div class="form-group">
+							<input type="text" class="form-control" name="q" placeholder="Search">
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+					{% if count %}
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Trovati: {{count}}</a></li>
+					</ul>
+					{% endif %}
+				</div><!-- /.navbar-collapse -->
+			</nav>
+		</header>
+		<div id="content" class="container">
+			{% for item in list %}
+			<article class="row jumbotron">
+				<h1><i class="fa fa-book fa-fw"></i>{{item.year}} - {{item.number}}<small>{{item.mode}}</small></h1>
+				<i class="fa fa-file-o fa-fw"></i><a href="http://augusto.digitpa.gov.it/gazzette/index/download/id/{{item.filename}}" target="_blank">{{item.filename}}</a>
+			</article>
+			{% endfor %}
+		</div>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	</body>
+</html>
